@@ -6,15 +6,49 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest --colors",
+    "test:coverage": "jest --coverage",
+    "test:watch": "clear && jest --colors --watch",
+    "coverage": "jest --coverage --coverageReporters=cobertura"
   },
   "dependencies": {
-    "next": "13.1.6",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "framer-motion": "^5.0.2",
+    "next": "12.0.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.7.1"
   },
   "devDependencies": {
-    "eslint": "8.33.0",
-    "eslint-config-next": "13.1.6"
+    "@testing-library/dom": "^7.31.2",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/user-event": "^13.5.0",
+    "babel-jest": "^27.3.1",
+    "eslint": "7.32.0",
+    "eslint-config-next": "12.0.2",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^27.5.1",
+    "jest-canvas-mock": "^2.3.1",
+    "supertest": "^6.3.3"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "<rootDir>/.next/",
+      "<rootDir>/node_modules/"
+    ],
+    "transform": {
+      "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest"
+    },
+    "moduleNameMapper": {
+      "\\.(css)$": "<rootDir>/node_modules/identity-obj-proxy"
+    },
+    "testEnvironment": "jsdom",
+    "modulePaths": [
+      "<rootDir>"
+    ],
+    "setupFiles": [
+      "jest-canvas-mock"
+    ]
   }
 }

@@ -117,12 +117,13 @@ export default function Index({ initData }) {
               placeholder="Buscar"
               onChange={(e) => setPokemon(e.target.value)}
               autoComplete="off"
+              role="textbox"
             />
           </form>
 
-          {search.name ? (
-            <table className={styles.table}>
-              <tbody>
+          {search.name && (
+            <table className={styles.table} id="listPokemons">
+              <thead>
                 <tr>
                   <th>Nombre</th>
                   <th>Imagen</th>
@@ -130,40 +131,40 @@ export default function Index({ initData }) {
                   <th>Defensa</th>
                   <th>Acciones</th>
                 </tr>
-                <tr>
-                  <td>{search.name}</td>
-                  <td>
-                    <img
-                      src={search.sprites.other.dream_world.front_default}
-                      alt={search.name}
-                      width={30}
-                      height={30}
-                      className={styles.imagen}
-                    />
-                  </td>
-                  <td>{search.stats[1].base_stat}</td>
-                  <td>{search.stats[2].base_stat}</td>
-                  <td>
-                    <a onClick={(e) => addPokemon(search)}>
-                      <FaPlus></FaPlus>
-                    </a>
-                  </td>
-                </tr>
-              </tbody>
+              </thead>
+              <tr>
+                <td> {search.name} </td>
+                <td>
+                  <img
+                    src={search.sprites.other.dream_world.front_default}
+                    alt={search.name}
+                    width={30}
+                    height={30}
+                    className={styles.imagen}
+                  />
+                </td>
+                <td> {search.stats[1].base_stat} </td>
+                <td> {search.stats[2].base_stat} </td>
+                <td>
+                  <a onClick={(e) => addPokemon(search)}>
+                    <FaPlus></FaPlus>
+                  </a>
+                </td>
+              </tr>
             </table>
-          ) : (
-            <></>
           )}
         </div>
 
         <button
           className={styles.newButton}
           onClick={(e) => setInCreation(true)}
+          role="buttonNew"
+          id="buttonNew"
         >
           <FaPlus></FaPlus>Nuevo
         </button>
         <table className={styles.table}>
-          <tbody>
+          <thead>
             <tr>
               <th>Nombre</th>
               <th>Imagen</th>
@@ -171,33 +172,41 @@ export default function Index({ initData }) {
               <th>Defensa</th>
               <th>Acciones</th>
             </tr>
-            {listPokemons
-              ? listPokemons.map((pokemon) => (
-                  <tr key={pokemon.id}>
-                    <td>{pokemon.name}</td>
-                    <td>
-                      <img
-                        src={pokemon.sprites}
-                        alt={pokemon.name}
-                        width={30}
-                        height={30}
-                        className={styles.imagen}
-                      />
-                    </td>
-                    <td>{pokemon.attack}</td>
-                    <td>{pokemon.defense}</td>
-                    <td>
-                      <a onClick={(e) => editPokemon(pokemon)}>
-                        <FaEdit></FaEdit>
-                      </a>
-                      <a onClick={(e) => removePokemon(pokemon.id)}>
-                        <FaTrash></FaTrash>
-                      </a>
-                    </td>
-                  </tr>
-                ))
-              : "Loading"}
-          </tbody>
+          </thead>
+          {listPokemons ? (
+            <tbody>
+              {listPokemons.map((pokemon) => (
+                <tr key={pokemon.id}>
+                  <td>{pokemon.name}</td>
+                  <td>
+                    <img
+                      src={pokemon.sprites}
+                      alt={pokemon.name}
+                      width={30}
+                      height={30}
+                      className={styles.imagen}
+                    />
+                  </td>
+                  <td>{pokemon.attack}</td>
+                  <td>{pokemon.defense}</td>
+                  <td>
+                    <a onClick={(e) => editPokemon(pokemon)}>
+                      <FaEdit></FaEdit>
+                    </a>
+                    <a onClick={(e) => removePokemon(pokemon.id)}>
+                      <FaTrash></FaTrash>
+                    </a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          ) : (
+            <tbody>
+              <tr>
+                <td colSpan="5">Loading</td>
+              </tr>
+            </tbody>
+          )}
         </table>
         {(inEdition || inCreation) && (
           <div>
@@ -205,7 +214,11 @@ export default function Index({ initData }) {
               {" "}
               {inEdition ? <>Editando a {formData.name}</> : <>Nuevo Pokemon</>}
             </p>
-            <form className={styles.addForm} onSubmit={handleSubmit}>
+            <form
+              className={styles.addForm}
+              onSubmit={handleSubmit}
+              aria-label="addPokemon"
+            >
               <div className={styles.addInput}>
                 <label htmlFor="name">Nombre</label>
                 <input
