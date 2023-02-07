@@ -11,9 +11,9 @@ export default function Index({ initData }) {
   const [formData, setFormData] = useState({
     id: "",
     name: "",
-    attack: "",
+    attack: "0",
     sprites: "",
-    defense: "",
+    defense: "0",
   });
 
   useEffect(() => {
@@ -146,7 +146,10 @@ export default function Index({ initData }) {
                 <td> {search.stats[1].base_stat} </td>
                 <td> {search.stats[2].base_stat} </td>
                 <td>
-                  <a onClick={(e) => addPokemon(search)}>
+                  <a
+                    onClick={(e) => addPokemon(search)}
+                    className={styles.link}
+                  >
                     <FaPlus></FaPlus>
                   </a>
                 </td>
@@ -190,10 +193,16 @@ export default function Index({ initData }) {
                   <td>{pokemon.attack}</td>
                   <td>{pokemon.defense}</td>
                   <td>
-                    <a onClick={(e) => editPokemon(pokemon)}>
+                    <a
+                      onClick={(e) => editPokemon(pokemon)}
+                      className={styles.link}
+                    >
                       <FaEdit></FaEdit>
                     </a>
-                    <a onClick={(e) => removePokemon(pokemon.id)}>
+                    <a
+                      onClick={(e) => removePokemon(pokemon.id)}
+                      className={styles.link}
+                    >
                       <FaTrash></FaTrash>
                     </a>
                   </td>
@@ -214,50 +223,63 @@ export default function Index({ initData }) {
               {" "}
               {inEdition ? <>Editando a {formData.name}</> : <>Nuevo Pokemon</>}
             </p>
-            <form
-              className={styles.addForm}
-              onSubmit={handleSubmit}
-              aria-label="addPokemon"
-            >
-              <div className={styles.addInput}>
-                <label htmlFor="name">Nombre</label>
-                <input
-                  type="text"
-                  onChange={handleFormChange}
-                  name="name"
-                  value={formData.name}
-                />
+            <form onSubmit={handleSubmit} aria-label="addPokemon">
+              <div className={styles.addForm}>
+                <div>
+                  <div className={styles.addInput}>
+                    <label htmlFor="name">Nombre</label>
+                    <input
+                      type="text"
+                      onChange={handleFormChange}
+                      name="name"
+                      value={formData.name}
+                    />
+                  </div>
+                  <div className={styles.addInput + " slidecontainer"}>
+                    <label htmlFor="name">Ataque</label>
+                    <input
+                      type="range"
+                      min="1"
+                      max="100"
+                      value={formData.attack}
+                      onChange={handleFormChange}
+                      name="attack"
+                      className="slider"
+                    />
+                    {formData.attack}
+                  </div>
+                </div>
+                <div>
+                  <div className={styles.addInput}>
+                    <label htmlFor="sprites">Imagen</label>
+                    <input
+                      type="text"
+                      onChange={handleFormChange}
+                      name="sprites"
+                      placeholder="URL"
+                      value={formData.sprites}
+                    />
+                  </div>
+                  <div className={styles.addInput}>
+                    <label htmlFor="name">Defensa</label>
+                    <input
+                      type="range"
+                      min="1"
+                      max="100"
+                      value={formData.defense}
+                      onChange={handleFormChange}
+                      name="defense"
+                      className="slider"
+                    />
+                    {formData.defense}
+                  </div>
+                </div>
               </div>
-              <div className={styles.addInput}>
-                <label htmlFor="name">Ataque</label>
-                <input
-                  type="text"
-                  onChange={handleFormChange}
-                  name="attack"
-                  value={formData.attack}
-                />
+              <div>
+                <button className={styles.newButton} type="submit">
+                  Guardar
+                </button>
               </div>
-              <div className={styles.addInput}>
-                <label htmlFor="name">Imagen</label>
-                <input
-                  type="text"
-                  onChange={handleFormChange}
-                  name="sprites"
-                  value={formData.sprites}
-                />
-              </div>
-              <div className={styles.addInput}>
-                <label htmlFor="name">Defensa</label>
-                <input
-                  type="text"
-                  onChange={handleFormChange}
-                  name="defense"
-                  value={formData.defense}
-                />
-              </div>
-              <button className={styles.newButton} type="submit">
-                Guardar
-              </button>
             </form>
           </div>
         )}

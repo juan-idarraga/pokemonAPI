@@ -21,10 +21,10 @@
 }
 .addForm {
   display: flex;
-  margin-bottom: 60px;
 }
 .addInput {
   width: 50%;
+  margin: 20px 0;
 }
 .newButton {
   background: #6654fd;
@@ -34,5 +34,22 @@
   border-radius: 4px;
   align-self: center;
   justify-self: self-end;
-  margin-bottom: 20px;
+  margin-bottom: 60px;
+}
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 25px;
+  background: #6654fd;
+  outline: none;
+  border: 1px solid #cecece;
+}
+.link {
+  color: #6654fd;
+  margin: 0 10px;
 }
