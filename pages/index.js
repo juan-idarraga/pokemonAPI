@@ -218,11 +218,11 @@ export default function Index({ initData }) {
           )}
         </table>
         {(inEdition || inCreation) && (
-          <div>
-            <p>
+          <div className={styles.addContainer}>
+            <h3 className={styles.center}>
               {" "}
               {inEdition ? <>Editando a {formData.name}</> : <>Nuevo Pokemon</>}
-            </p>
+            </h3>
             <form onSubmit={handleSubmit} aria-label="addPokemon">
               <div className={styles.addForm}>
                 <div>
@@ -235,6 +235,18 @@ export default function Index({ initData }) {
                       value={formData.name}
                     />
                   </div>
+                  <div className={styles.addInput}>
+                    <label htmlFor="sprites">Imagen</label>
+                    <input
+                      type="text"
+                      onChange={handleFormChange}
+                      name="sprites"
+                      placeholder="URL"
+                      value={formData.sprites}
+                    />
+                  </div>
+                </div>
+                <div>
                   <div className={styles.addInput + " slidecontainer"}>
                     <label htmlFor="name">Ataque</label>
                     <input
@@ -247,18 +259,6 @@ export default function Index({ initData }) {
                       className="slider"
                     />
                     {formData.attack}
-                  </div>
-                </div>
-                <div>
-                  <div className={styles.addInput}>
-                    <label htmlFor="sprites">Imagen</label>
-                    <input
-                      type="text"
-                      onChange={handleFormChange}
-                      name="sprites"
-                      placeholder="URL"
-                      value={formData.sprites}
-                    />
                   </div>
                   <div className={styles.addInput}>
                     <label htmlFor="name">Defensa</label>
@@ -275,7 +275,7 @@ export default function Index({ initData }) {
                   </div>
                 </div>
               </div>
-              <div>
+              <div className={styles.center}>
                 <button className={styles.newButton} type="submit">
                   Guardar
                 </button>

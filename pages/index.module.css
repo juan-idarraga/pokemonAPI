@@ -10,8 +10,9 @@
 }
 .table td,
 .table th {
-  border: 1px solid;
+  border: 2px solid #ccc;
   text-align: center;
+  padding: 2px 8px;
 }
 .search {
   margin-bottom: 60px;
@@ -19,12 +20,20 @@
 .inputSearch {
   margin-bottom: 20px;
 }
+.inputSearch input {
+  margin-left: 0;
+}
 .addForm {
   display: flex;
 }
+.addForm div {
+  text-align: center;
+  align-items: center;
+}
 .addInput {
   width: 50%;
-  margin: 20px 0;
+  margin: 20px;
+  display: flex;
 }
 .newButton {
   background: #6654fd;
@@ -34,7 +43,7 @@
   border-radius: 4px;
   align-self: center;
   justify-self: self-end;
-  margin-bottom: 60px;
+  margin-bottom: 20px;
 }
 .slidecontainer {
   width: 100%;
@@ -47,9 +56,17 @@
   height: 25px;
   background: #6654fd;
   outline: none;
-  border: 1px solid #cecece;
+  border: 2px solid #ccc;
 }
 .link {
   color: #6654fd;
   margin: 0 10px;
+}
+.addContainer {
+  width: fit-content;
+  border: 2px solid #ccc;
+  margin-bottom: 40px;
+}
+.center {
+  text-align: center;
 }
